@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: whitesmoke;
+}
+
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+
+nav {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  background: black;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px gray;
+}
+
+
+
+button {
+  margin-right: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+
+.btn-add {
+  background: green;
+}
+
+.btn-add:hover {
+  background: darkgreen;
+}
+
+
+.btn-edit {
+  background: dodgerblue;
+}
+
+.btn-edit:hover {
+  background: blue;
+}
+
+
+
+
+
+.btn-delete {
+  background: darkred;
+}
+
+.btn-delete:hover {
+  background: red;
+}
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  nav {
+    flex-direction: column;
+  }
+}
