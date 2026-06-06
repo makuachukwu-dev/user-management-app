@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { useAppDispatch } from "../store/hooks";
 import { updateUser } from "../store/userSlice";
 import type { User } from "../store/userSlice";
@@ -14,7 +14,7 @@ function EditUser({ user, onClose }: EditUserProps) {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
 
-  const handleUpdate = (e: React.FormEvent) => {
+  const handleUpdate = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     dispatch(
@@ -45,8 +45,11 @@ function EditUser({ user, onClose }: EditUserProps) {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <button type="submit">Update</button>
-        <button type="button" onClick={onClose}>
+        <button type="submit" className="btn-add">
+          Update
+        </button>
+
+        <button type="button" className="btn-delete" onClick={onClose}>
           Cancel
         </button>
       </form>

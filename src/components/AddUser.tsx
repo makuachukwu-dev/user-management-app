@@ -13,6 +13,7 @@ function AddUser() {
 
     dispatch(
       addUser({
+        id: Date.now(),
         name,
         email,
       })

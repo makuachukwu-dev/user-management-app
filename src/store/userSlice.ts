@@ -1,10 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+
 
 export type User = {
   id: number;
   name: string;
   email: string;
+  address?: {
+    street: string;
+    city: string;
+  };
 };
+
 
 type UserState = {
   users: User[];
@@ -16,33 +23,30 @@ const initialState: UserState = {
   loading: false,
 };
 
+
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  return (await response.json()) as User[];
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  return (await res.json()) as User[];
 });
 
-let nextId = 100;
 
 const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    addUser: (state, action) => {
-      state.users.push({
-        id: nextId++,
-        ...action.payload,
-      });
+    addUser: (state, action: PayloadAction<User>) => {
+      state.users.push(action.payload);
     },
 
-    deleteUser: (state, action) => {
+    deleteUser: (state, action: PayloadAction<number>) => {
       state.users = state.users.filter(
         (user) => user.id !== action.payload
       );
     },
 
-    updateUser: (state, action) => {
+    updateUser: (state, action: PayloadAction<User>) => {
       const index = state.users.findIndex(
-        (user) => user.id === action.payload.id
+        (u) => u.id === action.payload.id
       );
 
       if (index !== -1) {
@@ -52,17 +56,13 @@ const userSlice = createSlice({
   },
 
   extraReducers: (builder) => {
+    builder.addCase(fetchUsers.fulfilled, (state, action) => {
+      state.users = action.payload;
+      state.loading = false;
+    });
+
     builder.addCase(fetchUsers.pending, (state) => {
       state.loading = true;
-    });
-
-    builder.addCase(fetchUsers.fulfilled, (state, action) => {
-      state.loading = false;
-      state.users = action.payload;
-    });
-
-    builder.addCase(fetchUsers.rejected, (state) => {
-      state.loading = false;
     });
   },
 });

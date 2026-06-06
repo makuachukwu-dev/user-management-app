@@ -23,7 +23,7 @@ function UserList() {
 
       {loading && <p>Loading...</p>}
 
-      {users.map((user: User) => (
+      {users.map((user) => (
         <div key={user.id} className="card">
           <h3>{user.name}</h3>
           <p>{user.email}</p>
@@ -41,15 +41,16 @@ function UserList() {
           >
             Edit
           </button>
+
+          
+          {editingUser?.id === user.id && (
+            <EditUser
+              user={editingUser}
+              onClose={() => setEditingUser(null)}
+            />
+          )}
         </div>
       ))}
-
-      {editingUser && (
-        <EditUser
-          user={editingUser}
-          onClose={() => setEditingUser(null)}
-        />
-      )}
     </div>
   );
 }
