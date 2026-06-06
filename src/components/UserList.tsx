@@ -26,7 +26,11 @@ function UserList() {
       {users.map((user) => (
         <div key={user.id} className="card">
           <h3>{user.name}</h3>
+
           <p>{user.email}</p>
+
+          
+    
 
           <button
             className="btn-delete"
@@ -42,7 +46,6 @@ function UserList() {
             Edit
           </button>
 
-          
           {editingUser?.id === user.id && (
             <EditUser
               user={editingUser}

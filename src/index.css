@@ -42,7 +42,6 @@ h1 {
 
 
 
-
 button {
   margin-right: 8px;
   padding: 6px 12px;
@@ -50,7 +49,6 @@ button {
   border-radius: 5px;
   cursor: pointer;
   color: white;
-  font-weight: bold;
 }
 
 
@@ -72,6 +70,9 @@ button {
 }
 
 
+
+
+
 .btn-delete {
   background: darkred;
 }
@@ -79,3 +80,29 @@ button {
 .btn-delete:hover {
   background: red;
 }
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  nav {
+    flex-direction: column;
+  }
+}
+
